@@ -88,7 +88,7 @@ Con rviz2 podemos ver la salida de puntos del lidar.
 
 ## Conclusiones
 
-El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz con una resolución de 0.5 grados mínimo.
+El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz con una resolución de 0.5 grados mínimo o una velocidad de 10 Hz con una resolución de un 1 grado.
 
 ## Posible mejora
 
