@@ -49,7 +49,7 @@ Nodo y aplicación de prueba para SICK
 
 ### Cómo construir el paquete
 
-0) Abre una terminal y dirígete hasta tu workspace
+0) Abre una terminal y dirígete al workspace de ROS 2 o crea uno.
 1) Clona este proyecto en la carpeta src del espacio de trabajo.
 ```bash
 git clone https://github.com/racarla96/caddy_ai2_sensors_SICK_LMS291-S05.git
@@ -88,7 +88,7 @@ Con rviz2 podemos ver la salida de puntos del lidar.
 
 ## Conclusiones
 
-El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz.
+El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz con una resolución de 0.5 grados mínimo.
 
 ## Posible mejora
 
