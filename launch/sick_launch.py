@@ -46,11 +46,19 @@ def generate_launch_description():
     tf2_node = Node(package='tf2_ros',
                     executable='static_transform_publisher',
                     name='static_tf_pub_laser',
-                    arguments=['0', '0', '0.02','0', '0', '0', '1','base_link','laser_frame'],
+                    arguments=['0', '0', '0.02','0', '0', '0.785', '1','base_link','laser_frame'],
                     )
+    
+    rviz2_node = Node(package='rviz2',
+            namespace='',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', [os.path.join(share_dir, 'rviz2', 'config.rviz')]]  
+    )                      
 
     return LaunchDescription([
         params_declare,
         driver_node,
         tf2_node,
+        rviz2_node,
     ])

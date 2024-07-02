@@ -53,7 +53,7 @@ install(TARGETS
   sick_node sick_client
   DESTINATION lib/${PROJECT_NAME})
 
-install(DIRECTORY launch params startup
+install(DIRECTORY launch params startup rviz2
   DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)

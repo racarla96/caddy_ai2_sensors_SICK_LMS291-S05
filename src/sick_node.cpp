@@ -41,12 +41,7 @@ private:
         try {
       	    sick_lms->GetSickScan(range_values, num_range_values);
 
-/*             scan_msg->header.stamp.sec = RCL_NS_TO_S(scan.stamp);
-            scan_msg->header.stamp.nanosec =  scan.stamp - RCL_S_TO_NS(scan_msg->header.stamp.sec);
-
-            scan_msg->scan_time = scan.config.scan_time;
-            scan_msg->time_increment = scan.config.time_increment; */
-
+            scan_msg->header.stamp = this->get_clock()->now();
 
             for(int i = 0; i < size_values; i++) {
                 scan_msg->ranges[i] = ((float) range_values[i]) * this->cm2m;
@@ -117,12 +112,26 @@ public:
             RCLCPP_ERROR(this->get_logger(), "Initialize failed! Are you using the correct device path?");
         }
 
+        /* Initialize the device */
+        try {
+            sick_lms->Initialize(desired_baud);
+        } catch(...) {
+            RCLCPP_ERROR(this->get_logger(), "Initialize failed! Are you using the correct device path?");
+        }
+
+        sick_lms_scan_resolution_t res = sick_lms->DoubleToSickScanResolution(resolution);
+        if(res == SickLMS::SICK_SCAN_RESOLUTION_UNKNOWN){
+            RCLCPP_ERROR(this->get_logger(), "Invalid resolution value! Valid values are: 0.25, 0.5, 1.0");            
+        }
+        sick_lms->SetSickVariant(SickLMS::SICK_SCAN_ANGLE_180, res);
+
         scan_msg->header.frame_id = frame_id;
         scan_msg->angle_min = angle_min * deg2rad;
         scan_msg->angle_max = angle_max * deg2rad;
         scan_msg->angle_increment = resolution * deg2rad;
         scan_msg->range_min = min_range;
         scan_msg->range_max = max_range;
+        scan_msg->scan_time = 1.0 / frequency;
 
         size_values = (angle_max - angle_min)/ resolution + 1;
         scan_msg->ranges.resize(size_values);
