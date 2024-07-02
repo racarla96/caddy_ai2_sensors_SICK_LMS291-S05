@@ -38,7 +38,7 @@ namespace SickToolbox {
     SickLMSBufferMonitor( );
 
     /** A method for extracting a single message from the stream */
-    void GetNextMessageFromDataStream( SickLMSMessage &sick_message ) throw( SickIOException );
+    void GetNextMessageFromDataStream( SickLMSMessage &sick_message );
 
     /** A standard destructor */
     ~SickLMSBufferMonitor( );

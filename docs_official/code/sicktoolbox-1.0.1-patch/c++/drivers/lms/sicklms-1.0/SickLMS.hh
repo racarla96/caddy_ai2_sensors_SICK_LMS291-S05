@@ -514,61 +514,61 @@ namespace SickToolbox {
     
     /** Initializes the Sick */
     void Initialize( const sick_lms_baud_t desired_baud_rate )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Uninitializes the Sick */
-    void Uninitialize( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+    void Uninitialize( );
 
     /** Get the Sick LMS 2xx device type */
-    sick_lms_type_t GetSickType( ) const throw( SickConfigException );
+    sick_lms_type_t GetSickType( ) const;
 
     /** Gets the scan angle currently being used by the device */
-    double GetSickScanAngle( ) const throw( SickConfigException );
+    double GetSickScanAngle( ) const;
 
     /** Gets the scan resolution currently being used by the device */
-    double GetSickScanResolution( ) const throw( SickConfigException );
+    double GetSickScanResolution( ) const;
 
     /** Set the measurement units of the device (in EEPROM) */
     void SetSickMeasuringUnits( const sick_lms_measuring_units_t sick_units = SICK_MEASURING_UNITS_MM )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+     ;
 
     /** Get the current measurement units of the device */
-    SickLMS::sick_lms_measuring_units_t GetSickMeasuringUnits( ) const throw( SickConfigException );
+    SickLMS::sick_lms_measuring_units_t GetSickMeasuringUnits( ) const;
     
     /** Sets the sensitivity value for the device (in EEPROM). NOTE: Only applies to LMS 211/221/291 models. */
     void SetSickSensitivity( const sick_lms_sensitivity_t sick_sensitivity = SICK_SENSITIVITY_STANDARD )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+     ;
 
     /** Get the current Sick LMS 2xx sensitivity level. NOTE: Only applies to LMS 211/221/291 models. */
-    sick_lms_sensitivity_t GetSickSensitivity( ) const throw( SickConfigException );
+    sick_lms_sensitivity_t GetSickSensitivity( ) const;
 
     /** Sets the peak threshold mode for the device (in EEPROM). NOTE: Only applies to LMS 200/220 models */
     void SetSickPeakThreshold( const sick_lms_peak_threshold_t sick_peak_threshold = SICK_PEAK_THRESHOLD_DETECTION_WITH_NO_BLACK_EXTENSION )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+     ;
     
     /** Get the current Sick LMS 2xx sensitivity level. NOTE: Only applies to LMS 211/221/291 models. */
-    sick_lms_peak_threshold_t GetSickPeakThreshold( ) const throw( SickConfigException );;
+    sick_lms_peak_threshold_t GetSickPeakThreshold( ) const;;
     
     /** Sets the measuring mode for the device (in EEPROM). See page 98 of the telegram listing for more details. */
     void SetSickMeasuringMode( const sick_lms_measuring_mode_t sick_measuring_mode = SICK_MS_MODE_8_OR_80_FA_FB_DAZZLE )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+     ;
 
     /** Get the current Sick LMS 2xx measuring mode */
-    sick_lms_measuring_mode_t GetSickMeasuringMode( ) const throw( SickConfigException );
+    sick_lms_measuring_mode_t GetSickMeasuringMode( ) const;
 
     /** Get the current Sick LMS 2xx operating mode */
-    sick_lms_operating_mode_t GetSickOperatingMode( ) const throw( SickConfigException );
+    sick_lms_operating_mode_t GetSickOperatingMode( ) const;
     
     /** Sets the availability of the device (in EEPROM). See page 98 of the telegram listing for more details. */
     void SetSickAvailability( const uint8_t sick_availability_flags = SICK_FLAG_AVAILABILITY_DEFAULT )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+     ;
 
     /** Gets the current availability flags for the device */
-    uint8_t GetSickAvailability( ) const throw( SickConfigException );
+    uint8_t GetSickAvailability( ) const;
     
     /** Sets the variant type for the device (in EEPROM) */
     void SetSickVariant( const sick_lms_scan_angle_t scan_angle, const sick_lms_scan_resolution_t scan_resolution )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Gets measurement data from the Sick. NOTE: Data can be either range or reflectivity given the Sick mode. */
     void GetSickScan( unsigned int * const measurement_values,
@@ -577,7 +577,7 @@ namespace SickToolbox {
 		      unsigned int * const sick_field_b_values = NULL,
 		      unsigned int * const sick_field_c_values = NULL,
 		      unsigned int * const sick_telegram_index = NULL,
-		      unsigned int * const sick_real_time_scan_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+		      unsigned int * const sick_real_time_scan_index = NULL );
 
     /** Gets range and reflectivity data from the Sick. NOTE: This only applies to Sick LMS 211/221/291-S14! */
     void GetSickScan( unsigned int * const range_values,
@@ -588,7 +588,7 @@ namespace SickToolbox {
 		      unsigned int * const sick_field_b_values = NULL,
 		      unsigned int * const sick_field_c_values = NULL,
 		      unsigned int * const sick_telegram_index = NULL,
-		      unsigned int * const sick_real_time_scan_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+		      unsigned int * const sick_real_time_scan_index = NULL );
 
     /** Gets measurement data from the Sick. NOTE: Data can be either range or reflectivity given the Sick mode. */
     void GetSickScanSubrange( const uint16_t sick_subrange_start_index,
@@ -599,7 +599,7 @@ namespace SickToolbox {
 			      unsigned int * const sick_field_b_values = NULL,
 			      unsigned int * const sick_field_c_values = NULL,
 			      unsigned int * const sick_telegram_index = NULL,
-			      unsigned int * const sick_real_time_scan_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+			      unsigned int * const sick_real_time_scan_index = NULL );
     
     /** Gets partial scan measurements from the Sick LMS 2xx. NOTE: Data can be either range or reflectivity depending upon the given Sick mode. */
     void GetSickPartialScan( unsigned int * const measurement_values,
@@ -609,14 +609,14 @@ namespace SickToolbox {
 			     unsigned int * const sick_field_b_values = NULL,
 			     unsigned int * const sick_field_c_values = NULL,
 			     unsigned int * const sick_telegram_index = NULL,
-			     unsigned int * const sick_real_time_scan_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+			     unsigned int * const sick_real_time_scan_index = NULL );
 
     /** Gets mean measured values from the Sick LMS */
     void GetSickMeanValues( const uint8_t sick_sample_size,
 			    unsigned int * const measurement_values,
 			    unsigned int & num_measurement_values,
 			    unsigned int * const sick_telegram_index = NULL,
-			    unsigned int * const sick_real_time_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+			    unsigned int * const sick_real_time_index = NULL );
 
     /** Gets mean measured values from the Sick LMS */
     void GetSickMeanValuesSubrange( const uint8_t sick_sample_size,
@@ -625,16 +625,16 @@ namespace SickToolbox {
 				    unsigned int * const measurement_values,
 				    unsigned int & num_measurement_values,
 				    unsigned int * const sick_telegram_index = NULL,
-				    unsigned int * const sick_real_time_index = NULL ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+				    unsigned int * const sick_real_time_index = NULL );
 
     /** Acquire the Sick LMS status */
-    sick_lms_status_t GetSickStatus( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+    sick_lms_status_t GetSickStatus( );
 
     /** Indicates whether the Sick is an LMS Fast */
-    bool IsSickLMSFast( ) const throw( SickConfigException );
+    bool IsSickLMSFast( ) const;
     
     /** Resets Sick LMS field values */
-    void ResetSick( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+    void ResetSick( );
     
     /** Get Sick status as a string */
     std::string GetSickStatusAsString( ) const;
@@ -749,92 +749,92 @@ namespace SickToolbox {
     struct termios _old_term;
 
     /** Opens the terminal for serial communication. */
-    void _setupConnection( ) throw( SickIOException, SickThreadException );
+    void _setupConnection( );
 
     /** Closes the serial communication terminal. */
-    void _teardownConnection( ) throw( SickIOException );
+    void _teardownConnection( );
 
     /** Sends a message to the LMS and get the expected reply using th 0x80 rule.   @todo Check difference in comments? */
     void _sendMessageAndGetReply( const SickLMSMessage &sick_send_message,
 				  SickLMSMessage &sick_recv_message,
 				  const unsigned int timeout_value,
-				  const unsigned int num_tries ) throw( SickIOException, SickThreadException, SickTimeoutException ); 
+				  const unsigned int num_tries ); 
 
     /** Sends a message to the LMS and get the expected reply using th 0x80 rule. @todo Check difference in comments? */
     void _sendMessageAndGetReply( const SickLMSMessage &sick_send_message,
 				  SickLMSMessage &sick_recv_message,
 				  const uint8_t reply_code,
 				  const unsigned int timeout_value,
-				  const unsigned int num_tries ) throw( SickIOException, SickThreadException, SickTimeoutException ); 
+				  const unsigned int num_tries ); 
     
     /** Flushes the terminal I/O buffers */
-    void _flushTerminalBuffer( ) throw ( SickThreadException );
+    void _flushTerminalBuffer( );
     
     /** Sets the baud rate for communication with the LMS. */
-    void _setSessionBaud( const sick_lms_baud_t baud_rate ) throw( SickIOException, SickThreadException, SickTimeoutException );
+    void _setSessionBaud( const sick_lms_baud_t baud_rate );
 
     /** Tests communication wit the LMS at a particular baud rate. */
-    bool _testSickBaud( const sick_lms_baud_t baud_rate ) throw( SickIOException, SickThreadException );
+    bool _testSickBaud( const sick_lms_baud_t baud_rate );
 
     /** Changes the terminal's baud rate. */
-    void _setTerminalBaud( const sick_lms_baud_t sick_baud ) throw( SickIOException, SickThreadException );
+    void _setTerminalBaud( const sick_lms_baud_t sick_baud );
 
     /** Gets the type of Sick LMS */
-    void _getSickType( ) throw( SickTimeoutException, SickIOException, SickThreadException );
+    void _getSickType( );
 
     /** Gets the current Sick configuration settings */
-    void _getSickConfig( ) throw( SickTimeoutException, SickIOException, SickThreadException );
+    void _getSickConfig( );
 
     /** Sets the Sick configuration in flash */
-    void _setSickConfig( const sick_lms_device_config_t &sick_config ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException );
+    void _setSickConfig( const sick_lms_device_config_t &sick_config );
     
     /** Gets the status of the LMS */
-    void _getSickStatus( ) throw( SickTimeoutException, SickIOException, SickThreadException );
+    void _getSickStatus( );
 
     /** Gets the error status of the Sick LMS */
     void _getSickErrors( unsigned int * const num_sick_errors = NULL,
 			 uint8_t * const error_type_buffer = NULL,
-			 uint8_t * const error_num_buffer = NULL ) throw( SickTimeoutException, SickIOException, SickThreadException );
+			 uint8_t * const error_num_buffer = NULL );
 
     /** Switch Sick LMS to installation mode */
     void _setSickOpModeInstallation( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to diagnostic mode */
     void _setSickOpModeDiagnostic( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (request range data) */
     void _setSickOpModeMonitorRequestValues( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream range) */
     void _setSickOpModeMonitorStreamValues( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream range and reflectivity) */
     void _setSickOpModeMonitorStreamRangeAndReflectivity( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream range from a partial scan) */
     void _setSickOpModeMonitorStreamValuesFromPartialScan( )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream mean measured values) */
     void _setSickOpModeMonitorStreamMeanValues( const uint8_t sample_size )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream mean measured values) */
     void _setSickOpModeMonitorStreamValuesSubrange( const uint16_t subrange_start_index, const uint16_t subrange_stop_index )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
 
     /** Switch Sick LMS to monitor mode (stream mean measured values subrange) */
     void _setSickOpModeMonitorStreamMeanValuesSubrange( const uint16_t sample_size, const uint16_t subrange_start_index, const uint16_t subrange_stop_index )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
     
     /** Switches the operating mode of the LMS. */
     void _switchSickOperatingMode( const uint8_t sick_mode, const uint8_t * const mode_params = NULL )
-      throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException);
+     ;
     
     /** Parses the scan profile returned w/ message B0 */
     void _parseSickScanProfileB0( const uint8_t * const src_buffer, sick_lms_scan_profile_b0_t &sick_scan_profile ) const;

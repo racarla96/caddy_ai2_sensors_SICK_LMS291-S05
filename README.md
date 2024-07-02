@@ -1,19 +1,6 @@
 # caddy_ai2_sensors_SICK_LMS291-S05
 
-Este repositorio tiene el objetivo de guardar los documentos, CADs, programas y código del sensors.
-
-## TODOs
-
-- [ ] Desarrollo del package para ROS 2
-
-## Conclusiones
-
-El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz.
-
-## Posible mejora
-
-Comprando un adaptador de USB–COMi–M USB a RS–422 se podría aumentar el baudrate a 500000, esto nos permitiría aumentar el potencial del sensor a 75 Hz.
-
+Este repositorio tiene el objetivo de guardar los documentos, CADs, programas, código del sensor y tener un driver funcional para ROS 2.
 
 ## Instalación del driver 
 
@@ -31,18 +18,6 @@ sudo make install
 
 En la paǵina 13 del manual (manuals/sicktoolbox-quickstart.pdf) podemos encontrar la descripción y como usar cada uno de los ejemplos.
 
-Antes de todo es importante configurarlo
-
-#### Configuración
-
-```bash
-cd docs_official/code/sicktoolbox-1.0.1-patch/
-cd c++/examples/lms/lms_config/src
-sudo ./lms_config /dev/ttyUSB0 38400
-```
-
-Aquí hay que navegar por el menu y activar la opción de 
-
 #### Por ejemplo
 
 Abrimos una terminal.
@@ -52,15 +27,79 @@ cd docs_official/code/sicktoolbox-1.0.1-patch/
 cd c++/examples/lms/lms_partial_scan/src
 sudo ./lms_partial_scan /dev/ttyUSB0 38400
 ```
+Nota: Ajuste /dev/ttyUSB0 según el puerto serie de su dispositivo.
 
-#### Parche de código para poder compilar en nuevas versiones, testeado en Ubuntu 22.04 LTS
+Antes de todo es importante configurarlo para ello seguramente cuando lo ejecutamos nos dice que configuración aplicar.
 
-Este parche comprende las modificaciones de código de lod ficheros originales contenidos en sicktoolbox-1.0.1-original.tar.gz a sicktoolbox-1.0.1-patch.tar.xz, ya aplicados.
+#### Configuración
+
+*Nodo de ROS 2: Unidades -> cm y Resolución [0.25, 0.5, 1] acorde al yaml*
 
 ```bash
-sed -i 's/static const double SICK_MAX_SCAN_ANGULAR_RESOLUTION/static constexpr double SICK_MAX_SCAN_ANGULAR_RESOLUTION/; s/static const double SICK_DEGREES_PER_MOTOR_STEP/static constexpr double SICK_DEGREES_PER_MOTOR_STEP/' c++/drivers/ld/sickld-1.0/SickLD.hh
-sed -i '/#include <iostream>/a #include <unistd.h>' c++/drivers/base/src/SickBufferMonitor.hh
-sed -i '/#include <iostream>/a #include <unistd.h>' c++/drivers/base/src/SickLIDAR.hh
-sed -i 's/ifstream(config_path.c_str()) != NULL/ifstream(config_path.c_str())/g' c++/examples/ld/ld_config/src/main.cc
+cd docs_official/code/sicktoolbox-1.0.1-patch/
+cd c++/examples/lms/lms_config/src
+sudo ./lms_config /dev/ttyUSB0 38400
 ```
 
+## ROS 2 Driver
+
+El driver para ROS 2 para este sensor esta basado en el driver de https://github.com/YDLIDAR/ydlidar_ros2
+
+Nodo y aplicación de prueba para SICK
+
+### Cómo construir el paquete
+
+0) Abre una terminal y dirígete hasta tu workspace
+1) Clona este proyecto en la carpeta src del espacio de trabajo.
+```bash
+git clone https://github.com/racarla96/caddy_ai2_sensors_SICK_LMS291-S05.git
+```
+2) Ve a la raíz del workspace y compila el espacio de trabajo.
+```bash
+colcon build
+```
+3) Crear un alias del puerto serie llamado "/dev/sick"
+```bash
+cd caddy_ai2_sensors_SICK_LMS291-S05/startup
+sudo chmod 777 initenv.sh
+sudo sh initenv.sh
+```
+Si estaba conectado previamente, conectar y desconectar y comprobar que efectivamente aparece el nombre de sick
+```bash
+ls -la /dev/
+```
+
+## Cómo ejecutar el paquete
+
+### 1. Ejecute el nodo y visualícelo usando la aplicación de prueba.
+
+```bash
+ros2 run sick sick_node
+ros2 run sick sick_client
+```
+
+### 2.Ejecute el nodo y visualícelo usando la aplicación de prueba al iniciar
+
+```bash
+ros2 launch sick sick_launch.py
+```
+
+Con rviz2 podemos ver la salida de puntos del lidar.
+
+## Conclusiones
+
+El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 38400 baud, esta comunicación NO nos permite explotar todo el potencial del equipo, solo nos proporciona los puntos a una velocidad de 5 Hz.
+
+## Posible mejora
+
+Comprando un adaptador de USB–COMi–M USB a RS–422 se podría aumentar el baudrate a 500000, esto nos permitiría aumentar el potencial del sensor a 75 Hz.
+
+
+
+
+#### Parche de código aplicado para poder compilar en nuevas versiones, testeado en Ubuntu 22.04 LTS
+
+Este parche comprende las modificaciones de código de los ficheros originales contenidos en sicktoolbox-1.0.1-original.tar.gz a sicktoolbox-1.0.1-patch.tar.xz, ya aplicados necesarios para su compilación.
+
+#### Enlaces útiles
+- https://www.ros.org/reps/rep-0103.html

@@ -38,7 +38,7 @@ namespace SickToolbox {
    * \brief Acquires the next message from the SickLD byte stream
    * \param &sick_message The returned message object
    */
-  void SickLDBufferMonitor::GetNextMessageFromDataStream( SickLDMessage &sick_message ) throw( SickIOException ) {
+  void SickLDBufferMonitor::GetNextMessageFromDataStream( SickLDMessage &sick_message ) {
 
     /* Flush the input buffer */
     uint8_t byte_buffer;  

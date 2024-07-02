@@ -34,31 +34,31 @@ namespace SickToolbox {
   public:
 
     /** A standard constructor */
-    SickBufferMonitor( SICK_MONITOR_CLASS * const monitor_instance ) throw( SickThreadException );
+    SickBufferMonitor( SICK_MONITOR_CLASS * const monitor_instance );
 
     /** A method for setting the target data stream */
-    void SetDataStream( const unsigned int sick_fd ) throw( SickThreadException );
+    void SetDataStream( const unsigned int sick_fd );
     
     /** Start the buffer monitor for the device */
-    void StartMonitor( const unsigned int sick_fd ) throw( SickThreadException );
+    void StartMonitor( const unsigned int sick_fd );
 
     /** Acquire the most recent message buffered by the monitor */
-    bool GetNextMessageFromMonitor( SICK_MSG_CLASS &sick_message ) throw( SickThreadException );
+    bool GetNextMessageFromMonitor( SICK_MSG_CLASS &sick_message );
     
     /** Stop the buffer monitor for the device */
-    void StopMonitor( ) throw( SickThreadException );
+    void StopMonitor( );
 
     /** Locks access to the data stream */
-    void AcquireDataStream( ) throw( SickThreadException );
+    void AcquireDataStream( );
 
     /** Acquire the next message from raw byte stream */
     void GetNextMessageFromDataStream( SICK_MSG_CLASS &sick_message );
     
     /** Unlock access to the data stream */
-    void ReleaseDataStream( ) throw( SickThreadException );
+    void ReleaseDataStream( );
 
     /** A standard destructor */
-    ~SickBufferMonitor( ) throw( SickThreadException );
+    ~SickBufferMonitor( );
 
   protected:
 
@@ -66,7 +66,7 @@ namespace SickToolbox {
     unsigned int _sick_fd;   
     
     /** Reads n bytes into the destination buffer */
-    void _readBytes( uint8_t * const dest_buffer, const int num_bytes_to_read, const unsigned int timeout_value = 0 ) const throw ( SickTimeoutException, SickIOException );       
+    void _readBytes( uint8_t * const dest_buffer, const int num_bytes_to_read, const unsigned int timeout_value = 0 ) const;       
     
   private:
 
@@ -89,10 +89,10 @@ namespace SickToolbox {
     SICK_MSG_CLASS _recv_msg_container;      
 
     /** Locks access to the message container */
-    void _acquireMessageContainer( ) throw( SickThreadException );
+    void _acquireMessageContainer( );
 
     /** Unlocks access to the message container */
-    void _releaseMessageContainer( ) throw( SickThreadException );   
+    void _releaseMessageContainer( );   
 
     /** Entry point for the monitor thread */
     static void * _bufferMonitorThread( void * thread_args );    
@@ -104,7 +104,7 @@ namespace SickToolbox {
    * \param device_instance A pointer to the current driver instance
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::SickBufferMonitor( SICK_MONITOR_CLASS * const monitor_instance ) throw( SickThreadException ) :
+  SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::SickBufferMonitor( SICK_MONITOR_CLASS * const monitor_instance ) :
     _sick_monitor_instance(monitor_instance), _continue_grabbing(true), _monitor_thread_id(0) {
     
     /* Initialize the shared message buffer mutex */
@@ -124,7 +124,7 @@ namespace SickToolbox {
    * \param sick_fd The data stream file descriptor
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::SetDataStream( const unsigned int sick_fd ) throw ( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::SetDataStream( const unsigned int sick_fd ) {
 
     try {
     
@@ -157,7 +157,7 @@ namespace SickToolbox {
    * \return True upon success, False otherwise
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::StartMonitor( const unsigned int sick_fd ) throw ( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::StartMonitor( const unsigned int sick_fd ) {
 
     /* Assign the fd associated with the data stream */
     _sick_fd = sick_fd;
@@ -175,7 +175,7 @@ namespace SickToolbox {
    * \return True if the current contents were acquired, false otherwise
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  bool SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::GetNextMessageFromMonitor( SICK_MSG_CLASS &sick_message ) throw( SickThreadException ) {
+  bool SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::GetNextMessageFromMonitor( SICK_MSG_CLASS &sick_message ) {
 
     bool acquired_message = false;
 
@@ -221,7 +221,7 @@ namespace SickToolbox {
    * \return True if the thread was properly canceled, false otherwise
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::StopMonitor( ) throw ( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::StopMonitor( ) {
 
     try {
 
@@ -257,7 +257,7 @@ namespace SickToolbox {
    * \brief Acquires a lock on the data stream
    */ 
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::AcquireDataStream( ) throw( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::AcquireDataStream( ) {
 
     /* Attempt to lock the stream mutex */
     if (pthread_mutex_lock(&_stream_mutex) != 0) {
@@ -270,7 +270,7 @@ namespace SickToolbox {
    * \brief Releases a lock on the data stream
    */ 
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::ReleaseDataStream( ) throw( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::ReleaseDataStream( ) {
 
     /* Attempt to lock the stream mutex */
     if (pthread_mutex_unlock(&_stream_mutex) != 0) {
@@ -283,7 +283,7 @@ namespace SickToolbox {
    * \brief The destructor (kills the mutex)
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::~SickBufferMonitor( ) throw( SickThreadException ) {
+  SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::~SickBufferMonitor( ) {
 
     /* Destroy the message container mutex */
     if (pthread_mutex_destroy(&_container_mutex) != 0) {
@@ -301,7 +301,7 @@ namespace SickToolbox {
    * \brief Locks access to the message container
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_acquireMessageContainer( ) throw( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_acquireMessageContainer( ) {
 
     /* Lock the mutex */
     if (pthread_mutex_lock(&_container_mutex) != 0) {
@@ -314,7 +314,7 @@ namespace SickToolbox {
    * \brief Unlocks access to the message container
    */
   template < class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_releaseMessageContainer( ) throw( SickThreadException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_releaseMessageContainer( ) {
 
     /* Unlock the mutex */
     if (pthread_mutex_unlock(&_container_mutex) != 0) {
@@ -331,8 +331,7 @@ namespace SickToolbox {
    * \return True if the number of requested bytes were successfully read
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_readBytes( uint8_t * const dest_buffer, const int num_bytes_to_read, const unsigned int timeout_value ) const
-    throw ( SickTimeoutException, SickIOException ) {
+  void SickBufferMonitor< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_readBytes( uint8_t * const dest_buffer, const int num_bytes_to_read, const unsigned int timeout_value ) const{
     
     /* Some helpful variables */
     int num_bytes_read = 0;

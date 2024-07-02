@@ -49,14 +49,14 @@ namespace SickToolbox {
     /**
      * \brief From the standard exception library 
      */
-    virtual const char* what( ) const throw() {
+    virtual const char* what( ) const noexcept override{
       return _what.c_str();
     }
 
     /**
      * \brief A destructor
      */
-    ~SickException() throw() {}
+    ~SickException() {}
 
   private:
    /** full error message */
@@ -87,7 +87,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickTimeoutException() throw() { }
+    ~SickTimeoutException() { }
     
   };
   
@@ -116,7 +116,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickIOException() throw() { }
+    ~SickIOException() { }
     
   };
 
@@ -145,7 +145,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickBadChecksumException() throw() { }
+    ~SickBadChecksumException() { }
     
   };
 
@@ -174,7 +174,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickThreadException() throw() { }
+    ~SickThreadException() { }
     
   };
   
@@ -203,7 +203,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickConfigException() throw() { }
+    ~SickConfigException() { }
     
   };
 
@@ -232,7 +232,7 @@ namespace SickToolbox {
     /**
      * \brief A destructor
      */
-    ~SickErrorException() throw() { }
+    ~SickErrorException() { }
 
   };
 } /* namespace SickToolbox */

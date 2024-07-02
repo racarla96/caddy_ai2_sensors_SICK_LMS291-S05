@@ -370,41 +370,41 @@ namespace SickToolbox {
 	    const uint16_t sick_tcp_port = DEFAULT_SICK_TCP_PORT );
     
     /** Initializes the Sick LD unit (use scan areas defined in flash) */
-    void Initialize( )  throw( SickIOException, SickThreadException, SickTimeoutException, SickErrorException );
+    void Initialize( ) ;
 
     /** Gets the sensor and motor mode of the unit */
     void GetSickStatus( unsigned int &sick_sensor_mode, unsigned int &sick_motor_mode )
-      throw( SickIOException, SickTimeoutException );
+     ;
 
     /** Sets the temporal scan configuration (until power is cycled) */
     void SetSickTempScanAreas( const double * active_sector_start_angles, const double * const active_sector_stop_angles,
 			       const unsigned int num_active_sectors )
-      throw( SickTimeoutException, SickIOException, SickConfigException );
+     ;
     
     /** Sets the internal clock of the Sick LD unit */
     void SetSickTimeAbsolute( const uint16_t absolute_clock_time, uint16_t &new_sick_clock_time )
-      throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Sets the internal clock of the Sick LD using the relative given time value */
     void SetSickTimeRelative( const int16_t time_delta, uint16_t &new_sick_clock_time )
-      throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Gets the internal clock time of the Sick LD unit */
     void GetSickTime( uint16_t &sick_time )
-      throw( SickIOException, SickTimeoutException, SickErrorException );
+     ;
   
     /** Sets the signal LEDs and switches */
     void SetSickSignals( const uint8_t sick_signal_flags = DEFAULT_SICK_SIGNAL_SET )
-      throw( SickIOException, SickTimeoutException, SickErrorException );
+     ;
 
     /** Query the Sick for its current signal settings */
-    void GetSickSignals( uint8_t &sick_signal_flags ) throw( SickIOException, SickTimeoutException );
+    void GetSickSignals( uint8_t &sick_signal_flags );
   
     /** Enables nearfield suppressive filtering (in flash) */
-    void EnableNearfieldSuppression( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void EnableNearfieldSuppression( );
 
     /** Disables nearfield suppressive filtering (in flash) */
-    void DisableNearfieldSuppression( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void DisableNearfieldSuppression( );
 
     /** Acquires measurements and related data for all active sectors */
     void GetSickMeasurements( double * const range_measurements,
@@ -417,19 +417,19 @@ namespace SickToolbox {
 			      double * const sector_stop_angles = NULL,
 			      unsigned int * const sector_start_timestamps = NULL,
 			      unsigned int * const sector_stop_timestamps = NULL )
-      throw( SickErrorException, SickIOException, SickTimeoutException, SickConfigException );
+     ;
 
     /** Attempts to set a new senor ID for the device (in flash) */
     void SetSickSensorID( const unsigned int sick_sensor_id )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
 
     /** Attempts to set a new motor speed for the device (in flash) */
     void SetSickMotorSpeed( const unsigned int sick_motor_speed )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
 
     /** Attempts to set a new scan resolution for the device (in flash) */
     void SetSickScanResolution( const double sick_step_angle )
-      throw( SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Attempts to set the global params and the active scan sectors for the device (in flash) */
     void SetSickGlobalParamsAndScanAreas( const unsigned int sick_motor_speed,
@@ -437,17 +437,17 @@ namespace SickToolbox {
 					  const double * const active_sector_start_angles,
 					  const double * const active_sector_stop_angles,
 					  const unsigned int num_active_sectors )
-      throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException );
+     ;
 
     /** Attempts to set the active scan sectors for the device (in flash) */
     void SetSickScanAreas( const double * const active_sector_start_angles,
 			   const double * const active_sector_stop_angles,
 			   const unsigned int num_active_sectors )
-      throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException );
+     ;
 
     /** Resets the Sick LD using the given reset level */
     void ResetSick( const unsigned int reset_level = SICK_WORK_SERV_RESET_INIT_CPU )
-      throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Returns the number of active/measuring sectors */
     unsigned int GetSickNumActiveSectors( ) const;
@@ -537,7 +537,7 @@ namespace SickToolbox {
     void PrintSickSectorConfig( ) const;
   
     /** Uninitializes the Sick LD unit */
-    void Uninitialize( ) throw( SickIOException, SickTimeoutException, SickErrorException, SickThreadException );
+    void Uninitialize( );
 
     /** Destructor */
     ~SickLD();
@@ -581,135 +581,135 @@ namespace SickToolbox {
     sick_ld_config_sector_t _sick_sector_config;
 
     /** Setup the connection parameters and establish TCP connection! */
-    void _setupConnection( ) throw( SickIOException, SickTimeoutException );
+    void _setupConnection( );
   
     /** Synchronizes the driver state with the Sick LD (used for initialization) */
-    void _syncDriverWithSick( ) throw( SickIOException, SickTimeoutException, SickErrorException );
+    void _syncDriverWithSick( );
 
     /** Set the function for a particular scan secto */
     void _setSickSectorFunction( const uint8_t sector_number, const uint8_t sector_function,
 				 const double sector_angle_stop, const bool write_to_flash = false )
-       throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+      ;
   
     /** Acquires the given Sector's function (i.e. current config) */
     void _getSickSectorFunction( const uint8_t sector_num, uint8_t &sector_function, double &sector_stop_angle )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
   
     /** Sets the Sick LD to IDLE mode */
-    void _setSickSensorModeToIdle( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _setSickSensorModeToIdle( );
 
     /** Sets the Sick LD to ROTATE mode */
-    void _setSickSensorModeToRotate( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _setSickSensorModeToRotate( );
 
     /** Sets the Sick LD to MEASURE mode */
-    void _setSickSensorModeToMeasure( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _setSickSensorModeToMeasure( );
   
     /** Sets the Sick LD's sensor mode to IDLE (laser off, motor off) */
     void _setSickSensorMode( const uint8_t new_sick_sensor_mode )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
   
     /** Requests n range measurement profiles from the Sick LD */
     void _getSickScanProfiles( const uint16_t profile_format, const uint16_t num_profiles = DEFAULT_SICK_NUM_SCAN_PROFILES )
-      throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Parses a sequence of bytes and populates the profile_data struct w/ the results */
     void _parseScanProfile( uint8_t * const src_buffer, sick_ld_scan_profile_t &profile_data ) const;
 
     /** Cancels the active data stream */
-    void _cancelSickScanProfiles( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _cancelSickScanProfiles( );
 
     /** Turns nearfield suppression on/off */
     void _setSickFilter( const uint8_t suppress_code )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
   
     /** Stores an image of the Sick LD's identity locally */
-    void _getSickIdentity( ) throw( SickTimeoutException, SickIOException );
+    void _getSickIdentity( );
 
     /** Query the Sick for its sensor and motor status */
-    void _getSickStatus( ) throw( SickTimeoutException, SickIOException );
+    void _getSickStatus( );
 
     /** Sets the Sick LD's global configuration (in flash) */
     void _setSickGlobalConfig( const uint8_t sick_sensor_id, const uint8_t sick_motor_speed, const double sick_angle_step )
-      throw( SickErrorException, SickTimeoutException, SickIOException );
+     ;
 
     /** Query the Sick for its global configuration parameters */
-    void _getSickGlobalConfig( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _getSickGlobalConfig( );
 
     /** Query the Sick for its Ethernet configuration parameters */
-    void _getSickEthernetConfig( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _getSickEthernetConfig( );
 
     /** Acquires the configuration (function and stop angle) for each sector */
-    void _getSickSectorConfig( ) throw( SickErrorException, SickTimeoutException, SickIOException );
+    void _getSickSectorConfig( );
   
     /** Query the Sick for ID information */
     void _getIdentificationString( const uint8_t id_request_code, std::string &id_return_string )
-      throw( SickTimeoutException, SickIOException );
+     ;
   
     /** Query the Sick for its sensor part number */
-    void _getSensorPartNumber( ) throw( SickTimeoutException, SickIOException );
+    void _getSensorPartNumber( );
 
     /** Query the Sick for its assigned name */
-    void _getSensorName( ) throw( SickTimeoutException, SickIOException );
+    void _getSensorName( );
 
     /** Query the Sick for its version number */
-    void _getSensorVersion( ) throw( SickTimeoutException, SickIOException );
+    void _getSensorVersion( );
 
     /** Query the Sick for its serial number */
-    void _getSensorSerialNumber( ) throw( SickTimeoutException, SickIOException );
+    void _getSensorSerialNumber( );
 
     /** Query the Sick for its EDM unit's serial number */
-    void _getSensorEDMSerialNumber( ) throw( SickTimeoutException, SickIOException );
+    void _getSensorEDMSerialNumber( );
 
     /** Query the Sick for the part number of its firmware */
-    void _getFirmwarePartNumber( ) throw( SickTimeoutException, SickIOException );
+    void _getFirmwarePartNumber( );
 
     /** Query the Sick for the name of its firmware */
-    void _getFirmwareName( ) throw( SickTimeoutException, SickIOException );
+    void _getFirmwareName( );
 
     /** Query the Sick for the version of the firmware */
-    void _getFirmwareVersion( ) throw( SickTimeoutException, SickIOException );
+    void _getFirmwareVersion( );
 
     /** Query the part number of the application software */
-    void _getApplicationSoftwarePartNumber( ) throw( SickTimeoutException, SickIOException );
+    void _getApplicationSoftwarePartNumber( );
 
     /** Query the Sick for the application name */
-    void _getApplicationSoftwareName( ) throw( SickTimeoutException, SickIOException );
+    void _getApplicationSoftwareName( );
 
     /** Query the Sick for the application software version */
-    void _getApplicationSoftwareVersion( ) throw( SickTimeoutException, SickIOException );
+    void _getApplicationSoftwareVersion( );
 
     /** Allows setting the global parameters and scan area definition (in flash) */
     void _setSickGlobalParamsAndScanAreas( const unsigned int sick_motor_speed, const double sick_step_angle,
 					   const double * const active_sector_start_angles,
 					   const double * const active_sector_stop_angles,
 					   const unsigned int num_active_sectors )
-       throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException );
+      ;
 
     /** Allows setting a temporary (until a device reset) sector configuration on the device */
     void _setSickTemporaryScanAreas( const double * const active_sector_start_angles,
 				     const double * const active_sector_stop_angles,
 				     const unsigned int num_active_sectors )
-      throw( SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Sets the sick sector configuration */
     void _setSickSectorConfig( const unsigned int * const sector_functions, const double * const sector_stop_angles,
 			       const unsigned int num_sectors, const bool write_to_flash = false )
-      throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException );
+     ;
 
     /** Sets the signals for the device */
     void _setSickSignals( const uint8_t sick_signal_flags = DEFAULT_SICK_SIGNAL_SET )
-      throw( SickIOException, SickTimeoutException, SickErrorException );
+     ;
   
     /** Send a message, get the reply from the Sick LD and check it */
     void _sendMessageAndGetReply( const SickLDMessage &send_message, SickLDMessage &recv_message,
 				  const unsigned int timeout_value = DEFAULT_SICK_MESSAGE_TIMEOUT ) 
-      throw( SickIOException, SickTimeoutException );
+     ;
 
     /** Flushed the TCP receive buffer */
-    void _flushTCPRecvBuffer( ) throw ( SickIOException, SickThreadException );
+    void _flushTCPRecvBuffer( );
     
     /** Teardown the connection to the Sick LD */
-    void _teardownConnection( ) throw( SickIOException );
+    void _teardownConnection( );
 
     /** Generates a device-ready sector set given only an active sector spec. */
     void _generateSickSectorConfig( const double * const active_sector_start_angles,

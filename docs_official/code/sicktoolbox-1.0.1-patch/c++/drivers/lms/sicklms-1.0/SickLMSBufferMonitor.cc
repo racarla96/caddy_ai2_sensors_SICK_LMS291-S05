@@ -39,7 +39,7 @@ namespace SickToolbox {
    * \brief Acquires the next message from the SickLMS byte stream
    * \param &sick_message The returned message object
    */
-  void SickLMSBufferMonitor::GetNextMessageFromDataStream( SickLMSMessage &sick_message ) throw( SickIOException ) {
+  void SickLMSBufferMonitor::GetNextMessageFromDataStream( SickLMSMessage &sick_message ) {
     
     uint8_t search_buffer[2] = {0};
     uint8_t payload_length_buffer[2] = {0};

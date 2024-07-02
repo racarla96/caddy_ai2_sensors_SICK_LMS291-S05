@@ -1,0 +1,11 @@
+sick_node:
+  ros__parameters:
+    port: /dev/ttyUSB0
+    frame_id: laser_frame
+    baudrate: 38400
+    resolution: 0.25 # [0.25, 0.5, 1] degrees
+    angle_max: 90.0
+    angle_min: -90.0
+    max_range: 80.0
+    min_range: 0.01
+    frequency: 5.0

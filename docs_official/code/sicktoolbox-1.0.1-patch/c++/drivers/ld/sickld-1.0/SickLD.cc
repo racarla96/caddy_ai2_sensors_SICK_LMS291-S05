@@ -88,7 +88,7 @@ namespace SickToolbox {
   /**
    * \brief Initializes the driver and syncs it with Sick LD unit. Uses sector config given in flash.
    */
-  void SickLD::Initialize( ) throw( SickIOException, SickThreadException, SickTimeoutException, SickErrorException ) {
+  void SickLD::Initialize( ) {
 
     std::cout << "\t*** Attempting to initialize the Sick LD..." << std::endl; 
 
@@ -144,7 +144,7 @@ namespace SickToolbox {
    * \param &sick_motor_mode The returned motor mode of the device
    */
   void SickLD::GetSickStatus( unsigned int &sick_sensor_mode, unsigned int &sick_motor_mode )
-    throw( SickIOException, SickTimeoutException ){
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -189,7 +189,7 @@ namespace SickToolbox {
    */ 
   void SickLD::SetSickTempScanAreas( const double * active_sector_start_angles, const double * active_sector_stop_angles,
 				     const unsigned int num_active_sectors )
-        throw( SickTimeoutException, SickIOException, SickConfigException ) {
+        {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -239,7 +239,7 @@ namespace SickToolbox {
    *        to ROTATE mode after killing any active data streams (as per the protocol).
    */
   void SickLD::SetSickTimeAbsolute( const uint16_t absolute_clock_time, uint16_t &new_sick_clock_time ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -345,7 +345,7 @@ namespace SickToolbox {
    *        to ROTATE mode after killing any active data streams (as per the protocol).
    */
   void SickLD::SetSickTimeRelative( const int16_t delta_time, uint16_t &new_sick_clock_time ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -451,7 +451,7 @@ namespace SickToolbox {
    *       set - all others will be off!
    */
   void SickLD::SetSickSignals( const uint8_t sick_signal_flags )
-    throw( SickIOException, SickTimeoutException, SickErrorException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -494,7 +494,7 @@ namespace SickToolbox {
    * \brief Gets the Sick LD signal LED's and switching outputs.
    * \param &sick_signal_flags The destination buffer to hold the returned flags.
    */
-  void SickLD::GetSickSignals( uint8_t &sick_signal_flags ) throw( SickIOException, SickTimeoutException ) {
+  void SickLD::GetSickSignals( uint8_t &sick_signal_flags ) {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -555,7 +555,7 @@ namespace SickToolbox {
    * \param &sick_time The sick clock time in milliseconds.
    */
   void SickLD::GetSickTime( uint16_t &sick_time )
-    throw( SickIOException, SickTimeoutException, SickErrorException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -617,7 +617,7 @@ namespace SickToolbox {
    *       need to use it except when configuring the device.
    */ 
   void SickLD::EnableNearfieldSuppression( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device has been initialized */
     if(!_sick_initialized) {
@@ -666,7 +666,7 @@ namespace SickToolbox {
    *       need to use it except when configuring the device.
    */ 
   void SickLD::DisableNearfieldSuppression( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -747,7 +747,7 @@ namespace SickToolbox {
 				    double * const sector_stop_angles,
 				    unsigned int * const sector_start_timestamps,
 				    unsigned int * const sector_stop_timestamps )
-    throw( SickErrorException, SickIOException, SickTimeoutException, SickConfigException ){
+    {
 
     /* Ensure the device has been initialized */
     if(!_sick_initialized) {
@@ -989,7 +989,7 @@ namespace SickToolbox {
    * \param sick_sensor_id The desired sensor ID
    */
   void SickLD::SetSickSensorID( const unsigned int sick_sensor_id )
-    throw( SickErrorException, SickTimeoutException, SickIOException ){
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1038,7 +1038,7 @@ namespace SickToolbox {
    * \param sick_motor_speed The desired motor speed (Hz)
    */
   void SickLD::SetSickMotorSpeed( const unsigned int sick_motor_speed )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1100,7 +1100,7 @@ namespace SickToolbox {
    *       sector definitions remain intact.
    */
   void SickLD::SetSickScanResolution( const double sick_angle_step )
-    throw( SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1142,7 +1142,7 @@ namespace SickToolbox {
 						const double * const active_sector_start_angles,
 						const double * const active_sector_stop_angles,
 						const unsigned int num_active_sectors )
-    throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1198,7 +1198,7 @@ namespace SickToolbox {
   void SickLD::SetSickScanAreas( const double * const active_sector_start_angles,
 				 const double * const active_sector_stop_angles,
 				 const unsigned int num_active_sectors )
-    throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1250,7 +1250,7 @@ namespace SickToolbox {
    * \param reset_level The desired reset level (see page 33 of the telegram listing)
    */
   void SickLD::ResetSick( const unsigned int reset_level )
-    throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1656,7 +1656,7 @@ namespace SickToolbox {
   /**
    * \brief Tear down the connection between the host and the Sick LD
    */
-  void SickLD::Uninitialize( ) throw( SickIOException, SickTimeoutException, SickErrorException, SickThreadException ){
+  void SickLD::Uninitialize( ){
 
     /* Ensure the device has been initialized */
     if (!_sick_initialized) {
@@ -1729,7 +1729,7 @@ namespace SickToolbox {
   /**
    * \brief Establish a TCP connection to the unit
    */
-  void SickLD::_setupConnection( ) throw( SickIOException, SickTimeoutException ) {
+  void SickLD::_setupConnection( ) {
 
     /* Create the TCP socket */
     if ((_sick_fd = socket(PF_INET,SOCK_STREAM,IPPROTO_TCP)) < 0) {
@@ -1838,7 +1838,7 @@ namespace SickToolbox {
    *
    * \todo Add support in this method for acquiring RS-232/RS-422, and CAN configurations
    */
-  void SickLD::_syncDriverWithSick( )  throw( SickIOException, SickTimeoutException, SickErrorException ) {
+  void SickLD::_syncDriverWithSick( )  {
 
     try {
       
@@ -1889,7 +1889,7 @@ namespace SickToolbox {
    */
   void SickLD::_setSickSectorFunction ( const uint8_t sector_number, const uint8_t sector_function,
 					const double sector_stop_angle, const bool write_to_flash )
-    throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device is not measuring */
     if (_sick_sensor_mode == SICK_SENSOR_MODE_MEASURE) {
@@ -2014,7 +2014,7 @@ namespace SickToolbox {
    * \param &sector_stop The stop angle of the given sector
    */
   void SickLD::_getSickSectorFunction( const uint8_t sector_num, uint8_t &sector_function, double &sector_stop_angle )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device is not measuring */
     if (_sick_sensor_mode == SICK_SENSOR_MODE_MEASURE) {
@@ -2118,7 +2118,7 @@ namespace SickToolbox {
    * \brief Sets the Sick LD sensor mode to IDLE
    */
   void SickLD::_setSickSensorModeToIdle( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* If necessary adjust the operating mode of the sensor */
     if (_sick_sensor_mode != SICK_SENSOR_MODE_IDLE) {
@@ -2161,7 +2161,7 @@ namespace SickToolbox {
    * \brief Sets the Sick LD sensor mode to ROTATE
    */
   void SickLD::_setSickSensorModeToRotate( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* If necessary adjust the operating mode of the sensor */
     if (_sick_sensor_mode != SICK_SENSOR_MODE_ROTATE) {
@@ -2204,7 +2204,7 @@ namespace SickToolbox {
    * \brief Sets the Sick LD sensor mode to ROTATE
    */
   void SickLD::_setSickSensorModeToMeasure( ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* If necessary adjust the operating mode of the sensor */
     if (_sick_sensor_mode != SICK_SENSOR_MODE_MEASURE) {
@@ -2248,7 +2248,7 @@ namespace SickToolbox {
    * \param new_sick_sensor_mode The desired sensor mode
    */
   void SickLD::_setSickSensorMode( const uint8_t new_sick_sensor_mode ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
   
     /* If the new mode matches the current mode then just return */
     if (_sick_sensor_mode == new_sick_sensor_mode) {
@@ -2387,7 +2387,7 @@ namespace SickToolbox {
    *                     (NOTE: When num_profiles = 0, the Sick LD continuously streams profile data)
    */
   void SickLD::_getSickScanProfiles( const uint16_t profile_format, const uint16_t num_profiles )
-    throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+    {
 
     /* Ensure the device is in measurement mode */
     try {
@@ -2685,7 +2685,7 @@ namespace SickToolbox {
    * \brief Kills the current data stream
    */
   void SickLD::_cancelSickScanProfiles( ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device is in measurement mode */
     try {
@@ -2788,7 +2788,7 @@ namespace SickToolbox {
    * \param suppress_code Code indicating whether to enable or diable the nearfield suppression
    */
   void SickLD::_setSickFilter( const uint8_t suppress_code ) 
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device is not measuring */
     if (_sick_sensor_mode == SICK_SENSOR_MODE_MEASURE) {
@@ -2882,7 +2882,7 @@ namespace SickToolbox {
   /**
    * \brief Get the parameters that define the Sick LD's identity
    */
-  void SickLD::_getSickIdentity( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSickIdentity( )  {
 
     try {
       
@@ -2924,7 +2924,7 @@ namespace SickToolbox {
   /**
    * \brief Get the status of the Sick LD
    */
-  void SickLD::_getSickStatus( ) throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSickStatus( ) {
 
     /* Allocate a single buffer for payload contents */
     uint8_t payload_buffer[SickLDMessage::MESSAGE_PAYLOAD_MAX_LENGTH] = {0};
@@ -2986,7 +2986,7 @@ namespace SickToolbox {
    *        of the caller function to do error checking beforehand.
    */
   void SickLD::_setSickGlobalConfig( const uint8_t sick_sensor_id, const uint8_t sick_motor_speed, const double sick_angle_step )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device is in IDLE mode */
     try {
@@ -3085,7 +3085,7 @@ namespace SickToolbox {
   /**
    * \brief Get the global configuration of the Sick LD.
    */
-  void SickLD::_getSickGlobalConfig( )  throw( SickErrorException, SickTimeoutException, SickIOException ) {
+  void SickLD::_getSickGlobalConfig( )  {
 
     /* Ensure the device is in IDLE mode */
     try {
@@ -3190,7 +3190,7 @@ namespace SickToolbox {
    * \brief Get the Sick LD's Ethernet configuration.
    */
   void SickLD::_getSickEthernetConfig( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Ensure the device is in IDLE mode */
     try {      
@@ -3316,7 +3316,7 @@ namespace SickToolbox {
    *       start angle of sectors that aren't "normal measurement".
    */
   void SickLD::_getSickSectorConfig( )
-    throw( SickErrorException, SickTimeoutException, SickIOException ) {
+    {
 
     /* Reset the sector config struct */
     memset(&_sick_sector_config,0,sizeof(sick_ld_config_sector_t));
@@ -3393,7 +3393,7 @@ namespace SickToolbox {
    * \param &id_return_string A reference to hold the string returned from the Sick LD.x
    */
   void SickLD::_getIdentificationString( const uint8_t id_request_code, std::string &id_return_string )
-    throw( SickTimeoutException, SickIOException ) {
+    {
     
     /* Allocate a single buffer for payload contents */
     uint8_t payload_buffer[SickLDMessage::MESSAGE_PAYLOAD_MAX_LENGTH] = {0};
@@ -3445,7 +3445,7 @@ namespace SickToolbox {
   /**
    * \brief Get the Sick LD's part number
    */
-  void SickLD::_getSensorPartNumber( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSensorPartNumber( )  {
 
     /* Query the Sick LD */
     try {
@@ -3476,7 +3476,7 @@ namespace SickToolbox {
   /**
    * \brief Get the Sick LD's assigned sensor name
    */
-  void SickLD::_getSensorName( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSensorName( )  {
 
     /* Query the Sick LD */
     try {
@@ -3507,7 +3507,7 @@ namespace SickToolbox {
   /**
    * \brief Get the Sick LD's sensor version
    */
-  void SickLD::_getSensorVersion( ) throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSensorVersion( ) {
 
     /* Get the id info */
     try {
@@ -3538,7 +3538,7 @@ namespace SickToolbox {
   /**
    * \brief Get the Sick LD's serial number
    */
-  void SickLD::_getSensorSerialNumber( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSensorSerialNumber( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_SENSOR_SERIAL_NUM,_sick_identity.sick_serial_number);
@@ -3568,7 +3568,7 @@ namespace SickToolbox {
   /**
    * \brief Get sensor EDM serial number
    */
-  void SickLD::_getSensorEDMSerialNumber( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getSensorEDMSerialNumber( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_SENSOR_EDM_SERIAL_NUM,_sick_identity.sick_edm_serial_number);
@@ -3598,7 +3598,7 @@ namespace SickToolbox {
   /**
    * \brief Get firmware part number
    */
-  void SickLD::_getFirmwarePartNumber( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getFirmwarePartNumber( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_FIRMWARE_PART_NUM,_sick_identity.sick_firmware_part_number);
@@ -3628,7 +3628,7 @@ namespace SickToolbox {
   /**
    * \brief Get firmware name
    */
-  void SickLD::_getFirmwareName( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getFirmwareName( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_FIRMWARE_NAME,_sick_identity.sick_firmware_name);
@@ -3658,7 +3658,7 @@ namespace SickToolbox {
   /** 
    * \brief Get firmware version number
    */
-  void SickLD::_getFirmwareVersion( ) throw( SickTimeoutException, SickIOException ){
+  void SickLD::_getFirmwareVersion( ){
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_FIRMWARE_VERSION,_sick_identity.sick_firmware_version);
@@ -3688,7 +3688,7 @@ namespace SickToolbox {
   /**
    * \brief Get application software part number
    */
-  void SickLD::_getApplicationSoftwarePartNumber( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getApplicationSoftwarePartNumber( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_APP_PART_NUM,_sick_identity.sick_application_software_part_number);
@@ -3718,7 +3718,7 @@ namespace SickToolbox {
   /**
    * \brief Get application software name
    */
-  void SickLD::_getApplicationSoftwareName( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getApplicationSoftwareName( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_APP_NAME,_sick_identity.sick_application_software_name);
@@ -3748,7 +3748,7 @@ namespace SickToolbox {
   /**
    * \brief Get application software part number
    */
-  void SickLD::_getApplicationSoftwareVersion( )  throw( SickTimeoutException, SickIOException ) {
+  void SickLD::_getApplicationSoftwareVersion( )  {
 
     try {
       _getIdentificationString(SICK_STAT_SERV_GET_ID_APP_VERSION,_sick_identity.sick_application_software_version);
@@ -3787,7 +3787,7 @@ namespace SickToolbox {
 						 const double * const active_sector_start_angles,
 						 const double * const active_sector_stop_angles,
 						 const unsigned int num_active_sectors )
-    throw( SickTimeoutException, SickIOException, SickConfigException, SickErrorException ) {
+    {
 
     /* Define buffers to hold the device-ready configuration */
     unsigned int num_sectors = 0;
@@ -3884,7 +3884,7 @@ namespace SickToolbox {
    */
   void SickLD::_setSickTemporaryScanAreas( const double * const active_sector_start_angles,
 					   const double * const active_sector_stop_angles,
-					   const unsigned int num_active_sectors )   throw( SickTimeoutException, SickIOException, SickConfigException ) {
+					   const unsigned int num_active_sectors )   {
 
     /* Define buffers to hold the device-ready configuration */
     unsigned int num_sectors = 0;
@@ -3962,7 +3962,7 @@ namespace SickToolbox {
    */
   void SickLD::_setSickSectorConfig( const unsigned int * const sector_functions, const double * const sector_stop_angles,
 				     const unsigned int num_sectors, const bool write_to_flash ) 
-				     throw( SickErrorException, SickTimeoutException, SickIOException, SickConfigException ) {
+				     {
 
     /* Assign the new sector configuration to the device */
     for (unsigned int sector_id = 0; sector_id < num_sectors; sector_id++) {
@@ -4020,7 +4020,7 @@ namespace SickToolbox {
    *       In other words, only the signals flagged in sick_signal_flags will be
    *       set - all others will be off!
    */
-  void SickLD::_setSickSignals( const uint8_t sick_signal_flags )  throw( SickIOException, SickTimeoutException, SickErrorException ) {
+  void SickLD::_setSickSignals( const uint8_t sick_signal_flags )  {
 
     /* Allocate a single buffer for payload contents */
     uint8_t payload_buffer[SickLDMessage::MESSAGE_PAYLOAD_MAX_LENGTH] = {0};
@@ -4082,7 +4082,7 @@ namespace SickToolbox {
    */
   void SickLD::_sendMessageAndGetReply( const SickLDMessage &send_message, 
                                         SickLDMessage &recv_message, 
-                                        const unsigned int timeout_value ) throw( SickIOException, SickTimeoutException ) {
+                                        const unsigned int timeout_value ) {
 
     uint8_t byte_sequence[2] = {0};
 
@@ -4117,7 +4117,7 @@ namespace SickToolbox {
   /**
    * \brief Flushes TCP receive buffer contents
    */
-  void SickLD::_flushTCPRecvBuffer( ) throw( SickIOException, SickThreadException ) {
+  void SickLD::_flushTCPRecvBuffer( ) {
 
     uint8_t null_byte;
     int num_bytes_waiting = 0;    
@@ -4165,7 +4165,7 @@ namespace SickToolbox {
   /**
    * \brief Teardown TCP connection to Sick LD
    */
-  void SickLD::_teardownConnection( ) throw( SickIOException ) {
+  void SickLD::_teardownConnection( ) {
 
     /* Close the socket! */
     if (close(_sick_fd) < 0) {

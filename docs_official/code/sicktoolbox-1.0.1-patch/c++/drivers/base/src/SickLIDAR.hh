@@ -84,32 +84,31 @@ namespace SickToolbox {
     virtual void _teardownConnection( ) = 0;
 
     /** Starts the driver listening for messages */
-    void _startListening( ) throw( SickThreadException );
+    void _startListening( );
 
     /** Stops the driver from listening */
-    void _stopListening( )  throw( SickThreadException );
+    void _stopListening( ) ;
 
     /** Indicates whether there is a monitor currently running */
     bool _monitorRunning( ) const { return _sick_monitor_running; }
     
     /** Make the associated file descriptor non blocking */
-    void _setBlockingIO( ) const throw ( SickIOException );
+    void _setBlockingIO( ) const;
     
     /** Make the associated file descriptor non blocking */
-    void _setNonBlockingIO( ) const throw ( SickIOException );
+    void _setNonBlockingIO( ) const;
 
     /** Send a message to the Sick LD (allows specifying min time between transmitted bytes) */
-    void _sendMessage( const SICK_MSG_CLASS &sick_message, const unsigned int byte_interval ) const
-      throw( SickIOException );
+    void _sendMessage( const SICK_MSG_CLASS &sick_message, const unsigned int byte_interval ) const;
     
     /** Acquire the next message from the message container */
-    void _recvMessage( SICK_MSG_CLASS &sick_message, const unsigned int timeout_value ) const throw ( SickTimeoutException );
+    void _recvMessage( SICK_MSG_CLASS &sick_message, const unsigned int timeout_value ) const;
 
     /** Search the stream for a payload with a particular "header" byte string */
     void _recvMessage( SICK_MSG_CLASS &sick_message,
 		       const uint8_t * const byte_sequence,
 		       const unsigned int byte_sequence_length,
-		       const unsigned int timeout_value ) const throw ( SickTimeoutException );
+		       const unsigned int timeout_value ) const;
     
     /** An inline function for computing elapsed time */
     double _computeElapsedTime( const struct timeval &beg_time, const struct timeval &end_time ) const { return ((end_time.tv_sec*1e6)+(end_time.tv_usec))-((beg_time.tv_sec*1e6)+beg_time.tv_usec); }
@@ -121,7 +120,7 @@ namespace SickToolbox {
 					  const unsigned int byte_sequence_length,
 					  const unsigned int byte_interval,
 					  const unsigned int timeout_value,
-					  const unsigned int num_tries ) throw( SickTimeoutException, SickIOException);
+					  const unsigned int num_tries );
     
   };
 
@@ -159,7 +158,7 @@ namespace SickToolbox {
    * \brief Activates the buffer monitor for the driver
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_startListening( ) throw( SickThreadException ) {
+  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_startListening( ) {
 
     /* Try to start the monitor */
     try {
@@ -187,7 +186,7 @@ namespace SickToolbox {
    * \brief Activates the buffer monitor for the driver
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_stopListening( ) throw( SickThreadException ) {
+  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_stopListening( ) {
 
     /* Try to start the monitor */
     try {
@@ -215,7 +214,7 @@ namespace SickToolbox {
    * \brief A simple method for setting blocking I/O
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_setBlockingIO( ) const throw( SickIOException ) {
+  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_setBlockingIO( ) const {
 
     /* Read the flags */
     int fd_flags = 0;
@@ -234,7 +233,7 @@ namespace SickToolbox {
    * \brief A simple method for setting non-blocking I/O
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
-  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_setNonBlockingIO( ) const throw ( SickIOException ) {
+  void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_setNonBlockingIO( ) const {
 
     /* Read the flags */
     int fd_flags = 0;
@@ -256,7 +255,7 @@ namespace SickToolbox {
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
   void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_sendMessage( const SICK_MSG_CLASS &sick_message, const unsigned int byte_interval ) const
-    throw( SickIOException ) {
+    {
 
     uint8_t message_buffer[SICK_MSG_CLASS::MESSAGE_MAX_LENGTH] = {0};
 
@@ -299,7 +298,7 @@ namespace SickToolbox {
    */
   template< class SICK_MONITOR_CLASS, class SICK_MSG_CLASS >
   void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_recvMessage( SICK_MSG_CLASS &sick_message,
-								      const unsigned int timeout_value ) const throw ( SickTimeoutException ) {
+								      const unsigned int timeout_value ) const {
 
     /* Timeval structs for handling timeouts */
     struct timeval beg_time, end_time;
@@ -337,7 +336,7 @@ namespace SickToolbox {
   void SickLIDAR< SICK_MONITOR_CLASS, SICK_MSG_CLASS >::_recvMessage( SICK_MSG_CLASS &sick_message,
 								      const uint8_t * const byte_sequence,
 								      const unsigned int byte_sequence_length,
-								      const unsigned int timeout_value ) const throw( SickTimeoutException ) {
+								      const unsigned int timeout_value ) const {
 
     /* Define a buffer */
     uint8_t payload_buffer[SICK_MSG_CLASS::MESSAGE_PAYLOAD_MAX_LENGTH];
@@ -400,7 +399,7 @@ namespace SickToolbox {
 										 const unsigned int byte_interval,
 										 const unsigned int timeout_value,
 										 const unsigned int num_tries ) 
-										 throw( SickTimeoutException, SickIOException ) {
+										 {
     
     /* Send the message for at most num_tries number of times */
     for(unsigned int i = 0; i < num_tries; i++) {

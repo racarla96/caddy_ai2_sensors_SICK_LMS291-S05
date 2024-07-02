@@ -95,7 +95,7 @@ namespace SickToolbox {
    * \param desired_baud_rate Desired session baud rate
    */
   void SickLMS::Initialize( const sick_lms_baud_t desired_baud_rate )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Buffer the desired baud rate in case we have to reset */
     _desired_session_baud = desired_baud_rate;
@@ -225,7 +225,7 @@ namespace SickToolbox {
    * \brief Uninitializes the LMS by putting it in a mode where it stops streaming data,
    *        and returns it to the default baud rate (specified in the header).
    */
-  void SickLMS::Uninitialize( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+  void SickLMS::Uninitialize( ) {
 
     if (_sick_initialized) {
 
@@ -291,7 +291,7 @@ namespace SickToolbox {
    * \brief Gets the Sick LMS 2xx type
    * \return The device type
    */
-  sick_lms_type_t SickLMS::GetSickType( ) const throw( SickConfigException ) {
+  sick_lms_type_t SickLMS::GetSickType( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -307,7 +307,7 @@ namespace SickToolbox {
    * \brief Gets the current scan angle of the device
    * \return Scan angle of the device (sick_lms_scan_angle_t) 
    */
-  double SickLMS::GetSickScanAngle( ) const throw( SickConfigException ) {
+  double SickLMS::GetSickScanAngle( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -323,7 +323,7 @@ namespace SickToolbox {
    * \brief Gets the current angular resolution
    * \return Angular resolution of the Sick LMS 2xx (sick_lms_scan_resolution_t) 
    */
-  double SickLMS::GetSickScanResolution( ) const throw( SickConfigException ) {
+  double SickLMS::GetSickScanResolution( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -340,7 +340,7 @@ namespace SickToolbox {
    * \param sick_units Desired measurement units for the device
    */
   void SickLMS::SetSickMeasuringUnits( const sick_lms_measuring_units_t sick_units )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -412,7 +412,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx measuring units
    * \return Measuring units (sick_lms_measuring_units_t)
    */
-  sick_lms_measuring_units_t SickLMS::GetSickMeasuringUnits( ) const throw( SickConfigException ) {
+  sick_lms_measuring_units_t SickLMS::GetSickMeasuringUnits( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -429,7 +429,7 @@ namespace SickToolbox {
    * \param sick_sensitivity Desired sensitivity level
    */
   void SickLMS::SetSickSensitivity( const sick_lms_sensitivity_t sick_sensitivity )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -507,7 +507,7 @@ namespace SickToolbox {
    * \param sick_sensitivity Desired sensitivity level
    */
   void SickLMS::SetSickPeakThreshold( const sick_lms_peak_threshold_t sick_peak_threshold )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -584,7 +584,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx sensitivity level
    * \return Sensitivity level (sick_lms_sensitivity_t)
    */
-  sick_lms_sensitivity_t SickLMS::GetSickSensitivity( ) const throw( SickConfigException ) {
+  sick_lms_sensitivity_t SickLMS::GetSickSensitivity( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -606,7 +606,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx sensitivity level
    * \return Sensitivity level (sick_lms_sensitivity_t)
    */
-  sick_lms_peak_threshold_t SickLMS::GetSickPeakThreshold( ) const throw( SickConfigException ) {
+  sick_lms_peak_threshold_t SickLMS::GetSickPeakThreshold( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -629,7 +629,7 @@ namespace SickToolbox {
    * \param sick_measuring_mode Desired measuring mode
    */
   void SickLMS::SetSickMeasuringMode( const sick_lms_measuring_mode_t sick_measuring_mode )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -701,7 +701,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx measuring mode
    * \return Measuring mode (sick_lms_measuring_mode_t)
    */
-  sick_lms_measuring_mode_t SickLMS::GetSickMeasuringMode( ) const throw( SickConfigException ) {
+  sick_lms_measuring_mode_t SickLMS::GetSickMeasuringMode( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -717,7 +717,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx operating mode
    * \return Operating mode (sick_lms_operating_mode_t)
    */
-  sick_lms_operating_mode_t SickLMS::GetSickOperatingMode( ) const throw( SickConfigException ) {
+  sick_lms_operating_mode_t SickLMS::GetSickOperatingMode( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -734,7 +734,7 @@ namespace SickToolbox {
    * \param sick_availability_level Desired availability of the Sick LMS
    */
   void SickLMS::SetSickAvailability( const uint8_t sick_availability_flags )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -809,7 +809,7 @@ namespace SickToolbox {
    * \brief Gets the current Sick LMS 2xx availability level flags
    * \return Sick LMS 2xx Availability level flags
    */
-  uint8_t SickLMS::GetSickAvailability( ) const throw( SickConfigException ) {
+  uint8_t SickLMS::GetSickAvailability( ) const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -827,7 +827,7 @@ namespace SickToolbox {
    * \param scan_resolution The desired angular resolution of the Sick LMS 2xx
    */
   void SickLMS::SetSickVariant( const sick_lms_scan_angle_t scan_angle, const sick_lms_scan_resolution_t scan_resolution )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -971,7 +971,7 @@ namespace SickToolbox {
 			     unsigned int * const sick_field_b_values,
 			     unsigned int * const sick_field_c_values,
 			     unsigned int * const sick_telegram_index,
-			     unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+			     unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1103,7 +1103,7 @@ namespace SickToolbox {
 			     unsigned int * const sick_field_b_values,
 			     unsigned int * const sick_field_c_values,
 			     unsigned int * const sick_telegram_index,
-			     unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+			     unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1246,7 +1246,7 @@ namespace SickToolbox {
 				     unsigned int * const sick_field_b_values,
 				     unsigned int * const sick_field_c_values,
 				     unsigned int * const sick_telegram_index,
-				     unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+				     unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1383,7 +1383,7 @@ namespace SickToolbox {
 				    unsigned int * const sick_field_b_values,
 				    unsigned int * const sick_field_c_values,
 				    unsigned int * const sick_telegram_index,
-				    unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+				    unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1511,7 +1511,7 @@ namespace SickToolbox {
 				   unsigned int * const measurement_values,
 				   unsigned int & num_measurement_values,
 				   unsigned int * const sick_telegram_index,
-				   unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+				   unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1627,7 +1627,7 @@ namespace SickToolbox {
 					   unsigned int * const measurement_values,
 					   unsigned int & num_measurement_values,
 					   unsigned int * const sick_telegram_index,
-					   unsigned int * const sick_real_time_scan_index ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException) {
+					   unsigned int * const sick_real_time_scan_index ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1726,7 +1726,7 @@ namespace SickToolbox {
    * NOTE: This method also updated the local view of all other information
    *       returned with a status request.
    */
-  sick_lms_status_t SickLMS::GetSickStatus( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+  sick_lms_status_t SickLMS::GetSickStatus( ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1771,7 +1771,7 @@ namespace SickToolbox {
   /**
    * \brief Indicates whether the device is an LMS Fast
    */
-  bool SickLMS::IsSickLMSFast() const throw(SickConfigException) {
+  bool SickLMS::IsSickLMSFast() const {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -1788,7 +1788,7 @@ namespace SickToolbox {
    * \brief Reset the Sick LMS 2xx active field values
    * NOTE: Considered successful if the LMS ready message is received.
    */
-  void SickLMS::ResetSick( ) throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+  void SickLMS::ResetSick( ) {
 
     /* Ensure the device is initialized */
     if (!_sick_initialized) {
@@ -2309,7 +2309,7 @@ namespace SickToolbox {
   /**
    * \brief Attempts to open a I/O stream using the device path given at object instantiation
    */
-  void SickLMS::_setupConnection( ) throw ( SickIOException, SickThreadException ) {
+  void SickLMS::_setupConnection( ) {
 
     try {
     
@@ -2351,7 +2351,7 @@ namespace SickToolbox {
   /**
    * \brief Closes the data connection associated with the device
    */
-  void SickLMS::_teardownConnection( ) throw( SickIOException ) {
+  void SickLMS::_teardownConnection( ) {
 
     /* Check whether device was initialized */
     if(!_sick_initialized) {
@@ -2373,7 +2373,7 @@ namespace SickToolbox {
   /**
    * \brief Flushes terminal I/O buffers
    */
-  void SickLMS::_flushTerminalBuffer( ) throw ( SickThreadException ) {
+  void SickLMS::_flushTerminalBuffer( ) {
 
     try {
     
@@ -2417,7 +2417,7 @@ namespace SickToolbox {
   void SickLMS::_sendMessageAndGetReply( const SickLMSMessage &send_message,
 					 SickLMSMessage &recv_message,
 					 const unsigned int timeout_value,
-					 const unsigned int num_tries ) throw( SickIOException, SickThreadException, SickTimeoutException ) {
+					 const unsigned int num_tries ) {
 
     uint8_t sick_reply_code = send_message.GetCommandCode() + 0x80;
     
@@ -2466,7 +2466,7 @@ namespace SickToolbox {
 					 SickLMSMessage &recv_message,
 					 const uint8_t reply_code,
 					 const unsigned int timeout_value,
-					 const unsigned int num_tries ) throw( SickIOException, SickThreadException, SickTimeoutException ) {
+					 const unsigned int num_tries ) {
 
     try {
 
@@ -2507,7 +2507,7 @@ namespace SickToolbox {
    * \brief Sets the baud rate for the current communication session
    * \param baud_rate The desired baud rate
    */
-  void SickLMS::_setSessionBaud(const sick_lms_baud_t baud_rate) throw ( SickIOException, SickThreadException, SickTimeoutException ){
+  void SickLMS::_setSessionBaud(const sick_lms_baud_t baud_rate){
     
     SickLMSMessage message, response;
     
@@ -2567,7 +2567,7 @@ namespace SickToolbox {
    * \brief Attempts to detect whether the LMS is operating at the given baud rate
    * \param baud_rate The baud rate to use when "pinging" the Sick LMS 2xx
    */
-  bool SickLMS::_testSickBaud(const sick_lms_baud_t baud_rate) throw( SickIOException, SickThreadException ) {
+  bool SickLMS::_testSickBaud(const sick_lms_baud_t baud_rate) {
 
     try {
     
@@ -2630,7 +2630,7 @@ namespace SickToolbox {
    * \brief Sets the local terminal baud rate
    * \param baud_rate The desired terminal baud rate
    */
-  void SickLMS::_setTerminalBaud( const sick_lms_baud_t baud_rate ) throw( SickIOException, SickThreadException ) {
+  void SickLMS::_setTerminalBaud( const sick_lms_baud_t baud_rate ) {
 
     struct termios term;
 
@@ -2758,7 +2758,7 @@ namespace SickToolbox {
   /**
    * \brief Acquires the sick device type (as a string) from the unit
    */
-  void SickLMS::_getSickType( ) throw( SickTimeoutException, SickIOException, SickThreadException ) {
+  void SickLMS::_getSickType( ) {
     
     SickLMSMessage message,response;
     
@@ -2876,7 +2876,7 @@ namespace SickToolbox {
   /**
    * \brief Acquires (and buffers) the current Sick LMS configuration from the device
    */
-  void SickLMS::_getSickConfig( ) throw( SickTimeoutException, SickIOException, SickThreadException ) {
+  void SickLMS::_getSickConfig( ) {
 
      SickLMSMessage message, response;
 
@@ -2935,7 +2935,7 @@ namespace SickToolbox {
    * \param &sick_device_config The desired Sick LMS configuration
    */
   void SickLMS::_setSickConfig( const sick_lms_device_config_t &sick_device_config )
-    throw( SickConfigException, SickTimeoutException, SickIOException, SickThreadException ) {
+    {
 
     try {
       
@@ -3116,7 +3116,7 @@ namespace SickToolbox {
    * \brief Obtains any error codes from the Sick LMS
    */
   void SickLMS::_getSickErrors( unsigned int * const num_sick_errors, uint8_t * const error_type_buffer,
-				uint8_t * const error_num_buffer ) throw( SickTimeoutException, SickIOException, SickThreadException ) {
+				uint8_t * const error_num_buffer ) {
 
      SickLMSMessage message, response;
 
@@ -3193,7 +3193,7 @@ namespace SickToolbox {
   /**
    * \brief Acquires (and buffers) the status of the Sick LMS 2xx
    */
-  void SickLMS::_getSickStatus( ) throw( SickTimeoutException, SickIOException, SickThreadException ) {
+  void SickLMS::_getSickStatus( ) {
 
     SickLMSMessage message,response;
 
@@ -3480,7 +3480,7 @@ namespace SickToolbox {
    * \brief Sets the device to installation mode
    */
   void SickLMS::_setSickOpModeInstallation( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
     
     /* Assign the password for entering installation mode */
     uint8_t sick_password[9] = DEFAULT_SICK_LMS_SICK_PASSWORD;
@@ -3539,7 +3539,7 @@ namespace SickToolbox {
    * \brief Sets the device to diagnostic mode
    */
   void SickLMS::_setSickOpModeDiagnostic( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_DIAGNOSTIC) {
@@ -3599,7 +3599,7 @@ namespace SickToolbox {
    * \brief Sets the device to monitor mode and tells it to send values only upon request
    */
   void SickLMS::_setSickOpModeMonitorRequestValues( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_REQUEST_VALUES) {
@@ -3655,7 +3655,7 @@ namespace SickToolbox {
    * \brief Sets the device to monitor mode and tells it to stream measured values
    */
   void SickLMS::_setSickOpModeMonitorStreamValues( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_STREAM_VALUES) {
@@ -3715,7 +3715,7 @@ namespace SickToolbox {
    * \brief Sets the device to monitor mode and tells it to stream both range and reflectivity values
    */
   void SickLMS::_setSickOpModeMonitorStreamRangeAndReflectivity( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* A sanity check to make sure that the command is supported */
     if (_sick_type != SICK_LMS_TYPE_211_S14 && _sick_type != SICK_LMS_TYPE_221_S14 && _sick_type != SICK_LMS_TYPE_291_S14) {
@@ -3783,7 +3783,7 @@ namespace SickToolbox {
    * \brief Sets the device to monitor mode and tells it to start sending partial scans
    */
   void SickLMS::_setSickOpModeMonitorStreamValuesFromPartialScan( )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_STREAM_VALUES_FROM_PARTIAL_SCAN) {
@@ -3843,7 +3843,7 @@ namespace SickToolbox {
    * \brief Sets the device to monitor mode and tells it to send mean measured values
    */
   void SickLMS::_setSickOpModeMonitorStreamMeanValues( const uint8_t sample_size )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_STREAM_MEAN_VALUES ||
@@ -3914,7 +3914,7 @@ namespace SickToolbox {
    * \param subrange_stop_index The stopping index of the desired subrange
    */
   void SickLMS::_setSickOpModeMonitorStreamValuesSubrange( const uint16_t subrange_start_index, const uint16_t subrange_stop_index )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_STREAM_VALUES_SUBRANGE ||
@@ -4003,7 +4003,7 @@ namespace SickToolbox {
    * \param subrange_stop_index The stopping index of the desired subrange
    */
   void SickLMS::_setSickOpModeMonitorStreamMeanValuesSubrange( const uint16_t sample_size, const uint16_t subrange_start_index, const uint16_t subrange_stop_index )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     /* Check if mode should be changed */
     if (_sick_operating_status.sick_operating_mode != SICK_OP_MODE_MONITOR_STREAM_MEAN_VALUES_SUBRANGE ||
@@ -4100,7 +4100,7 @@ namespace SickToolbox {
    * \param mode_params Additional parameters required to set the new operating mode
    */
   void SickLMS::_switchSickOperatingMode( const uint8_t sick_mode, const uint8_t * const mode_params )
-    throw( SickConfigException, SickIOException, SickThreadException, SickTimeoutException) {
+    {
 
     SickLMSMessage message,response;
 
