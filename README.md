@@ -33,7 +33,7 @@ Antes de todo es importante configurarlo para ello seguramente cuando lo ejecuta
 
 #### Configuración
 
-*Nodo de ROS 2: Unidades -> cm y Resolución [0.25, 0.5, 1] acorde al yaml*
+*Nodo de ROS 2: Unidades -> cm*
 
 ```bash
 cd docs_official/code/sicktoolbox-1.0.1-patch/
