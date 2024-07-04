@@ -33,7 +33,7 @@ Antes de todo es importante configurarlo para ello seguramente cuando lo ejecuta
 
 #### Configuración
 
-*Nodo de ROS 2: Unidades -> cm*
+*Nodo de ROS 2: Unidades -> cm* TODO pendiente verificar la unidades dinamicamente independiente a la configuración, así adaptarse según la configuración del sensor.
 
 ```bash
 cd docs_official/code/sicktoolbox-1.0.1-patch/
@@ -92,7 +92,7 @@ El sensor del que disponemos la conexión la realiza mediante RS-232 a USB a 384
 
 ## Posible mejora
 
-Comprando un adaptador de USB–COMi–M USB a RS–422 se podría aumentar el baudrate a 500000, esto nos permitiría aumentar el potencial del sensor a 75 Hz.
+Comprando un adaptador de RS–422 a USB se podría aumentar el baudrate a 500000, esto nos permitiría aumentar el potencial del sensor a 75 Hz.
 
 
 
